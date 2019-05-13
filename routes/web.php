@@ -17,5 +17,17 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
 }]);
 
 Route::get('/', function () {
-    return view('welcome');
+   dd('welcome');
+});
+
+Route::get('/test', function () {
+    dd('test');
+});
+
+Route::prefix('back')->group(function (){
+    Auth::routes();
+    Route::get('/test',function (){
+        dd('admin back platform');
+    });
+
 });

@@ -6,6 +6,12 @@ use Dingo\Api\Routing\Router;
 $api = app(Router::class);
 
 $api->version('v1', function (Router $api) {
+    $api->get('/', function() {
+        return response()->json([
+            'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
+        ]);
+    });
+
     $api->group(['prefix' => 'auth'], function(Router $api) {
         $api->post('signup', 'App\\Api\\V1\\Controllers\\SignUpController@signUp');
         $api->post('login', 'App\\Api\\V1\\Controllers\\LoginController@login');
