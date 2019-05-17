@@ -20,14 +20,15 @@ Route::get('/', function () {
    dd('welcome');
 });
 
-Route::get('/test', function () {
-    dd('test');
-});
 
 Route::prefix('back')->group(function (){
-    Auth::routes();
+
     Route::get('/test',function (){
         dd('admin back platform');
     });
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
