@@ -1,15 +1,24 @@
 <?php
 
-use Dingo\Api\Routing\Router;
+use Dingo\Api\Routing\Router as Router;
 
 /** @var Router $api */
 $api = app(Router::class);
 
 $api->version('v1', function (Router $api) {
+
     $api->get('/', function() {
         return response()->json([
             'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
         ]);
+    });
+
+    //后台系统api
+    $api->group(['prefix'=>'admin' , 'namespace' => 'App\Api\V1\Controllers\Admin'],function (Router $api){
+        $api->group(['prefix'=>'video'],function (Router $api){
+            $api->post('post', 'VideosController@post');
+            $api->get('/', 'VideosController@index');
+        });
     });
 
     $api->group(['prefix' => 'auth'], function(Router $api) {
@@ -43,7 +52,8 @@ $api->version('v1', function (Router $api) {
 
     $api->get('hello', function() {
         return response()->json([
-            'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
+            'msg' => 'This is a simple example of item returned by your APIs. Everyone can see it.',
+            'code' => 0
         ]);
     });
 });

@@ -17,8 +17,16 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
 }]);
 
 Route::get('/', function () {
-   dd('welcome');
+   echo 'this is web.php';
 });
+
+Route::get('/name', function () {
+    echo json_encode([
+        'code'=>0,
+        'msg'=>'this is api luy'
+    ]);
+});
+
 
 
 Route::prefix('back')->group(function (){
