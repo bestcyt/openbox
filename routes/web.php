@@ -16,8 +16,8 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
     // implement your reset password route here!
 }]);
 
-Route::get('/', function () {
-   print_r($_SERVER);
+Route::get('/', function (\Illuminate\Http\Request $request) {
+   dd($request->header());
 });
 
 Route::get('/name', function () {
