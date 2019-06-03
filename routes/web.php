@@ -17,7 +17,7 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
 }]);
 
 Route::get('/', function () {
-   echo 'this is web.php';
+   print_r($_SERVER);
 });
 
 Route::get('/name', function () {
