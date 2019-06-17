@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use Illuminate\Support\Facades\DB;
+
 class VideosService
 {
 
@@ -11,9 +13,18 @@ class VideosService
      * 获取视频列表
      * param
      */
-    public function index(){
+    public function index($requestData){
+        $where[] = ['status','=',1];
+        if (empty($requestData)){
+            $where[] = ['is_hot','=',1];
+        }
 
-        echo  'http://upyun-cyt.b0.upaiyun.com/RF3czXGvAU3FHwgaxN0Cm0QtbX9pWyszRLx8IURm.jpeg';
+        $list = DB::table('videos')
+            ->where($where)
+            ->get()
+            ;
+
+        return $list;
     }
 
 }

@@ -16,13 +16,12 @@ $api->version('v1', function (Router $api) {
     //后台系统api
     $api->group(['prefix'=>'admin' , 'namespace' => 'App\Api\V1\Controllers\Admin'],function (Router $api){
         $api->group(['prefix'=>'video'],function (Router $api){
-//            $api->post('post', 'VideosController@post');
             $api->post('post',function (\Dingo\Api\Http\Request $request){
-                $content = file_get_contents('php://input');
+                $go = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
                 return json_encode([
                     'code' => 0,
-                    '$content' => $content,
-                    'request' => $request->input('file'),
+                    'go' => $go,
+                    'request' => $request->input('testImage'),
                     'url'  => 'http://upyun-cyt.b0.upaiyun.com/RF3czXGvAU3FHwgaxN0Cm0QtbX9pWyszRLx8IURm.jpeg'
                 ]);
             });
