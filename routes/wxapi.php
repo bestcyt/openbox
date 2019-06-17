@@ -12,6 +12,9 @@ $api->version('v1', function (Router $api) {
     $api->group([ 'namespace' => 'App\Api\V1\Controllers\Wx'],function (Router $api){
         //视频列表，默认热门
         $api->get('/videos', 'VideosController@index');
+
+        //视频分类
+        $api->get('/videoTypes', 'VideoTypesController@index');
     });
 
 
