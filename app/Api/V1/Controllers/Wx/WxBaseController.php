@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 class WxBaseController extends Controller
 {
 
+    //判断是否登录
+    public function isLogin(){
+        return true;
+    }
+
     protected function ok($data = null)
     {
         $res = ['statusCode' => 200];
